@@ -1,0 +1,93 @@
+<html>
+<head>
+<style type="text/css">
+.body { width: 1400px; height: 800px; position: relative; background-position: 0 0; background-repeat: no-repeat}
+.map_image .map_link { display: block; position: absolute; text-indent: -999em; overflow: hidden; }
+.map_image #map_link_0 { width: 123px; height: 128px; top: 297px; left: 6px; }
+
+#ticker { width:900px; height:782px;  overflow:auto; text-align: center; padding-left:300px; }
+#ticker dt { font:normal 72px helvetica; padding:0 10px 5px 10px;  padding-top:10px; border:none; border-bottom:none; border-right:none; position:relative; }
+#ticker dd { margin-left:0; font:normal 64px helvetica; padding:0 10px 10px 10px; border-bottom:none;  border-left:none; position:relative; }
+#ticker dd.last { none }
+#ticker div { margin-top:0; }
+
+</style>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+	  $(function() {
+	  
+		//cache the ticker
+		var ticker = $("#ticker");
+		  
+		//wrap dt:dd pairs in divs
+		ticker.children().filter("dt").each(function() {
+		  
+		  var dt = $(this),
+		    container = $("<div>");
+		  
+		  dt.next().appendTo(container);
+		  dt.prependTo(container);
+		  
+		  container.appendTo(ticker);
+		});
+				
+		//hide the scrollbar
+		ticker.css("overflow", "hidden");
+		
+		//animator function
+		function animator(currentItem) {
+		    
+		  //work out new anim duration
+		  var distance = currentItem.height();
+			duration = (distance + parseInt(currentItem.css("marginTop"))) / 0.08;
+
+		  //animate the first child of the ticker
+		  currentItem.animate({ marginTop: -distance }, duration, "linear", function() {
+		    
+			//move current item to the bottom
+			currentItem.appendTo(currentItem.parent()).css("marginTop", 0);
+
+			//recurse
+			animator(currentItem.parent().children(":first"));
+		  }); 
+		};
+		
+		//start the ticker
+		animator(ticker.children(":first"));
+				
+		//set mouseenter
+		ticker.mouseenter(function() {
+		  
+		  //stop current animation
+		  ticker.children().stop();
+		  
+		});
+		
+		//set mouseleave
+		ticker.mouseleave(function() {
+		          
+          //resume animation
+		  animator(ticker.children(":first"));
+		  
+		});
+	  });
+    </script>
+	</head>
+<body class="map_image" style="background-image: url('img/Credits.png'); background-repeat: no-repeat;">
+<a class="map_link" id="map_link_0" title="index" href="index.html">index.html</a>
+
+
+<div id="tickerContainer">
+      <dl id="ticker">
+        <dt class="heading">Co-Directors</dt><dd class="text">Diogo Fekete<br />Yash Shah <br /> Zeeshan Hayat<br /><br /></dd>
+        <dt class="heading">Advisor</dt><dd class="text">Mr. Richard Hildred<br /><br /></dd>
+        <dt class="heading">Instructors</dt><dd class="text">Prof. Glenn Paulley<br />Prof. Ignac Kolenko <br /><br /></dd>
+        <dt class="heading">Biological Facts</dt><dd class="text">School of Health Sciences, Conestoga College<br /><br /></dd>
+		<dt class="heading">Stage Designs</dt><dd class="text">Prof. Steve Hendrikse<br /><br /></dd>
+		<dt class="heading">Graphics</dt><dd class="text">Rasha Alzuhairi<br />Yash Shah<br /><br /></dd>
+        <dt class="heading">Location Courtesy</dt><dd class="text">Laurier LaunchPad - Communitech Hub<br /><br /></dd>
+		<dt class="heading">Deployment</dt><dd class="text">Developers @ Blackberry<br /><br /></dd>
+      </dl> 
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<!--[if IE]>
+			<h1 style="color:rgb(255,0,0)">Internet Explorer detected!</h1>
+			<h2>Best played on <a href="http://www.mozilla.org/en-US/firefox/new/">Mozilla</a> or <a href="https://www.google.com/intl/en/chrome/browser/index.html#eula">Google</a> browsers</h2>
+		<![endif]-->
+		<script type="text/javascript" src="JS/utils.js"></script>
+		<script type="text/javascript">
+		function styleLink(){
+			if (UserProfile.isTouchDevice()){
+				document.getElementById('MobileImage').style.display = "block";
+			}
+			else{
+				document.getElementById('BrowserImage').style.display = "block";
+			}
+		}
+		</script>
+	</head>
+<body>
+
+ <div id="BrowserBackground" style="position:fixed;width: 1400px; height: 800px;">
+    <img id="BrowserImage" src="img/mainScreen_Desktop.png" usemap="#map" border="0" width="100%" alt="" />
+<map id="map_ID" name="map">
+  <area shape="rect" coords="565,420,680,490" alt="Play" href="game.html">
+    <area shape="rect" coords="515,500,720,570" alt="Options" href="options.html">
+	  <area shape="rect" coords="465,570,785,630" alt="Instructions" href="instructions.html">
+	    <area shape="rect" coords="530,650,725,700" alt="credits" href="credits.html">
+  <area shape="circle" coords="1190,710,40" alt="quit" onClick="Javascript: var answer = confirm ('Are you sure you want to quit Blood Defence?');
+	if (answer){
+	alert('Thanks for playing!');
+	window.close()
+	};">
+</map>
+	</div>
+	
+<div id = "MobileBackground">
+<img id="MobileImage" src="img/mainscreen_Mobile.png" alt="mainScreen_Mobile" width="720" height="1280" usemap="#Map" border="0" style="background-repeat:no-repeat;height:100%;width:100%;display:none" />
+<map name="Map" id="Map">
+  
+  <area shape="rect" coords="195,622,543,707" href="#game.html" alt="play" />
+  <area shape="circle" coords="619,1128,42" onClick="self.close()" alt="quit" />
+<area shape="rect" coords="195,755,542,839" href="#options.html" alt="options" />
+  <area shape="rect" coords="150,887,562,962" href="#instructions.html" alt="instructions" />
+  <area shape="rect" coords="195,1019,550,1090" href="#credits.html" alt="credits" />
+ 
+</map>
+</div>
+	</body>
+</html>

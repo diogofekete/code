@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Blood Defense</title>
+		<script type="text/javascript" src="JS/utils.js"></script> 
+		<script type="text/javascript" src="JS/stages.js"></script> 	
+</head>
+<body>
+	<!--<embed src='music.mp3' hidden='false' autostart='true' loop='true' type='audio/mpeg' /> -->
+	<audio loop id="background_audio" autoplay="autoplay">
+		<source src="music/music.mp3" type="audio/mpeg" />
+	</audio> 
+	
+    <div id="game">
+		<!-- The canvas element that the game is rendered on -->
+		<div id="hitArea">
+			<canvas id="world">If you see this text is because your browser cannot support HTML5 Canvas, please try to update or at another browser. ;)
+			<div id="loading">
+			<img src="img/wbc_small.png" id="wbc_normal" />
+			<img src="img/wbc_loosing.png" id="wbc_loosing" />
+			<img src="img/wbc_winning.png" id="wbc_winning" />
+			<img src="img/rbc_small.png" id="rbc_img" />
+			<img src="img/bacteria_small.png" id="bacteria_img" />
+			<img src="img/virus_small.png" id="virus_img" />
+			<img src="img/protozoa_small.png" id="protozoa_img" />
+			<img src="img/fungi_small.png" id="fungi_img" />
+			<img src="img/pause.png" id="pause_img" />
+			<img src="img/BB10rBackground.jpg" id="BB10rBackground" />
+			<img src="img/BB10stageSelectionBackground.jpg" id="BB10stageSelectionBackground" />
+			<img src="img/browserBackground.jpg" id="browserBackground" />
+			<img src="img/stageSelectionBackground.jpg" id="stageSelectionBackground" />
+			<img src="img/almonds.png" id="almonds" />
+			<img src="img/broccoli.png" id="broccoli" />
+			<img src="img/carrot.png" id="carrot" />
+			<img src="img/lettuce.png" id="lettuce" />
+			<img src="img/orange.png" id="orange" />
+			<img src="img/levels.png" id="levels" />
+			</div>
+			</canvas>
+		</div>
+	</div>
+	
+		<script type="text/javascript" src="JS/game.js"></script> 
+
+		<script type="text/javascript">
+		window.load = new function() {
+			
+			if (UserProfile.isTouchDevice()){
+				background_img = document.getElementById("BB10rBackground");
+				stageBackground_img = document.getElementById("BB10stageSelectionBackground");
+			}
+			else{
+				background_img = document.getElementById("browserBackground");
+				stageBackground_img = document.getElementById("stageSelectionBackground");
+			}
+			GameWorld.initialize();
+		}
+		</script>
+</body>
+</html>
